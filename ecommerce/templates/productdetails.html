@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content1 %}
+
+<section class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+<div class="hero-slider owl-carousel">
+			<div class="hs-item">
+				<div class="hs-left"><img src="{{categories.image.url}}" alt=""></div>
+				<div class="hs-right">
+					<div class="hs-content">
+						<div class="price"> </div>
+						<h2><span> </span> <br> </h2>
+
+					</div>
+				</div>
+			</div>
+			<div class="hs-item">
+				<div class="hs-left"><img src="{{categories.image.url}}" alt=""></div>
+				<div class="hs-right">
+					<div class="hs-content">
+						<div class="price"> </div>
+						<h2><span> </span> <br></h2>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{product.image.url}}" height="300px" width="200px">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="text-center">{{product.name}}</h3>
+        <p class="card-text"><h5>Description:</h5> {{product.desc}}</p>
+		  <p class="card-text"><h5>stock:</h5> {{product.stock}}</p>
+        <p class="card-text"><h5>Price:</h5> {{product.price}}</p>
+		  {% if user.is_superuser == True %}
+		  {% if product.stock > 0 %}
+		  <h5>Product In Stock</h5>
+		  <a href="{% url 'shop:addstock' product.id %}" class="btn btn-secondary fw-bold mt-3 mb-2 text-center">ADD STOCK</a>
+		  {% else %}
+		  <h5>Product Out Of Stock</h5>
+		  <a href="{% url 'shop:addstock' product.id %}" class="btn btn-secondary fw-bold mt-3 mb-2 text-center">ADD STOCK</a>
+		  {% endif %}
+
+
+		  {% else %}
+		  {% if product.stock > 0 %}
+
+		<a href="{% url 'cart:addtocart' product.id %}" class="site-btn">ADD TO CART</a>
+		  {% else %}
+		  <h5>Out Of Stock</h5>
+		  {% endif %}
+		  {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

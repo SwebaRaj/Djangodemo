@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content1 %}
+<section class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}">
+<div class="hero-slider owl-carousel">
+			<div class="hs-item">
+				<div class="hs-left"><img src="{{categories.image.url}}" alt=""></div>
+				<div class="hs-right">
+					<div class="hs-content">
+						<div class="price"> </div>
+						<h2><span> </span> <br> </h2>
+
+					</div>
+				</div>
+			</div>
+			<div class="hs-item">
+				<div class="hs-left"><img src="{{categories.image.url}}" alt=""></div>
+				<div class="hs-right">
+					<div class="hs-content">
+						<div class="price"> </div>
+						<h2><span> </span> <br></h2>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block content %}
+<style>
+.class1{
+        margin:auto;
+        border:1px solid white;
+        padding:40px;
+        display:flex;
+        justify-content:space-around;
+        align-items:center;}
+</style>
+
+
+<div class="class1"><h1 class="text-center mt-3 text-secondary">{{categories.name}}</h1></div>
+<div class="class1"><p><b>{{categories.description}}</b></p></div>
+
+
+<div class="featured-section spad">
+		<div class="container">
+			<div class="row">
+                {% for i in products %}
+				<div class="col-md-4">
+					<div class="featured-item">
+						<h5 class="card-title text-center">{{i.name}}</h5>
+						<img src="{{i.image.url}}" height="200px" width="100%" alt="">
+                        <h6 class="card-text"><b>price: </b>{{i.price}}</h6>
+						<div class="d-grid col-4 mx-auto">
+						<a href="{% url 'shop:productdetails' i.id %}" class="btn btn-secondary btn-sm">see more</a>
+						</div></div>
+				</div>
+                 {% endfor %}
+			</div>
+		</div>
+
+</div>
+
+{% endblock %}

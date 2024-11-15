@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid bg-secondary">
+
+<div style="height:100px;width:100%"></div>
+<h3 style="text-align:center;">Order Details!</h3>
+
+  {% for i in orders %}
+
+    <div class="card mb-3 mt-5 mx-auto p-4 " style="max-width: 650px;">
+
+  <div class="row g-0">
+    <div class="col-md-4 p-2">
+      <img src="{{i.pro.image.url}}" class="rounded-start" alt="..." height="250px" width="100%">
+    </div>
+    <div class="col-md-8 lh-lg ps-5">
+      <div class="card-body mt-3 text-start fs-5">
+        <h3 class="card-title"> Product Name : {{i.pro.name}}</h3>
+        <h4 class="card-text"><strong>price: {{i.pro.price}}</strong></h4>
+        <p class="card-text"><strong>Quantity : {{i.no_of_items}}</strong></p>
+        <p class="card-text"><strong>Ordered on : {{i.order_date}}</strong></p>
+        <p class="card-text text-danger"><strong>Delivery Status : {{i.delivery_status}}</strong></p>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+
+</div>
+{% endblock %}
